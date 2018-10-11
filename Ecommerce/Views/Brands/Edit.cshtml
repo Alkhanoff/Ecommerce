@@ -1,58 +1,91 @@
 ﻿@model Ecommerce.Models.Brand
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Brand</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-left col-md-4 col-12 mb-2">
+                <h3 class="content-header-title">Brend Yarat</h3>
+            </div>
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-right">
+                    <div class="breadcrumb-wrapper mr-1">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index-2.html">Ana Səhifə</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Redaktə</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Brendlər
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="content-body">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.status)
-                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+
+
+
+
+            <div class="card" style="width: 50%;">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-form">Yeni Brend</h4>
+
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+
+                        <form method="post" enctype="multipart/form-data" action="@Url.Action("edit", "brands")">
+                            <div class="form-body">
+                                <input type="hidden" value="@Model.id" />
+                                <div class="form-group">
+                                    <label for="companyName">Ad</label>
+                                    <input type="text" id="companyName" class="form-control" value="@Model.name" name="name">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyinput1">Şəkil</label>
+                                            <input type="file" id="companyinput1" class="form-control" name="image">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                     <img src="@Model.image" style="max-height: 120px;"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <a href="@Url.Action("index","brands")" class="btn btn-danger mr-1">
+                                    <i class="ft-x"></i> Ləğv et
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="la la-check-square-o"></i> Əlavə et
+                                </button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+
+
+
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-

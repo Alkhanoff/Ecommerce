@@ -90,43 +90,25 @@ namespace Ecommerce.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,image,status")] Brand brand)
+     
+        public ActionResult Edit( HttpPostedFileBase image , Brand brand)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(brand).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(brand);
-        }
 
-        // GET: Brands/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
-            {
-                return HttpNotFound();
-            }
-            return View(brand);
-        }
-
-        // POST: Brands/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Brand brand = db.Brands.Find(id);
-            db.Brands.Remove(brand);
+           
+            db.Entry(brand).State = EntityState.Modified;
+            db.Entry(brand).Property(t => t.status).IsModified = false;
+            if (image == null)
+                    db.Entry(brand).Property(m => m.image).IsModified = false;
+                   
             db.SaveChanges();
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            
+            
         }
+
+     
+
+        
 
         protected override void Dispose(bool disposing)
         {
