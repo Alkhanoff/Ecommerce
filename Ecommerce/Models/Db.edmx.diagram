@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40e49538125a43ff892c2dcf0b4a37db" Name="Diagram1">
+        <EntityTypeShape EntityType="ecommerceModel.Brand" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.Color" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.Gender" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.Image" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.ProductColor" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.Product" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.ProductSize" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.Size" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerceModel.SubCategory" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="ecommerceModel.FK_Products_Brands" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_SubCategory_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_ProductColors_Colors" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_Products_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_Images_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_ProductColors_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_Products_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_ProductSizes_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerceModel.FK_ProductSizes_Sizes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

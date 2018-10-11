@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Ecommerce.Models.Brand>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-left col-md-4 col-12 mb-2">
+                <h3 class="content-header-title">Brendlər</h3>
+            </div>
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-right">
+                    <div class="breadcrumb-wrapper mr-1">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index-2.html">Ana Səhifə</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Redaktə</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Brendlər
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Scroll - vertical, dynamic height table -->
+            <section id="scroll-dynamic">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                           
+                             <h4 class="card-title">Bütün Brendlər</h4>
+                          
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <a class="btn btn-success" href="@Url.Action("create", "brands")">Yenisini Yarat</a>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body card-dashboard">
+                                    <table class="table table-striped table-bordered dynamic-height">
+                                        <thead>
+                                            <tr>
+                                                <th>Ad</th>
+                                                <th>Şəkil</th>
+                                                <th>Status</th>
+                                                <th>Tənzimləmə</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.name)
+                                                </td>
+                                                <td>
+                                                    <img width="60" height="60" src="@item.image" />
+                                                </td>
+                                                <td>
+                                                    @if (item.status == true)
+                                                    {
+                                                        <div class="badge badge-info">Aktiv</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="badge badge-danger">Passiv</div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                   <a class="btn btn-primary" href="@Url.Action("edit","brands" , new { id= item.id })">Dəyiş</a>
+                                                  
+                                                </td>
+
+                                            </tr>
+                                            }
+                                            </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Ad</th>
+                                                <th>Şəkil</th>
+                                                <th>Status</th>
+                                                <th>Tənzimləmə</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Zero configuration table -->
+
+         
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.status)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.image)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    </div>

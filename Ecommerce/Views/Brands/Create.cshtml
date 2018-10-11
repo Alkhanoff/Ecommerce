@@ -1,0 +1,88 @@
+﻿@model Ecommerce.Models.Brand
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-left col-md-4 col-12 mb-2">
+                <h3 class="content-header-title">Brend Yarat</h3>
+            </div>
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-right">
+                    <div class="breadcrumb-wrapper mr-1">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index-2.html">Ana Səhifə</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Redaktə</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Brendlər
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+
+
+           
+                
+            
+
+                <div class="card" style="width: 50%;"> 
+				<div class="card-header">
+					<h4 class="card-title" id="basic-layout-form">Yeni Brend</h4>
+					
+				</div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+
+                        <form method="post" enctype="multipart/form-data" action="@Url.Action("create", "brands")">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label for="companyName">Ad</label>
+                                    <input type="text" id="companyName" class="form-control" name="name">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyinput1">Şəkil</label>
+                                            <input type="file" id="companyinput1" class="form-control" name="image">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <a href="@Url.Action("index","brands")" class="btn btn-danger mr-1">
+                                    <i class="ft-x"></i> Ləğv et
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="la la-check-square-o"></i> Əlavə et
+                                </button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+                 
+
+                </div>
+				</div>
+			</div>
+        
+
+       
+
+        </div>
+</div>
