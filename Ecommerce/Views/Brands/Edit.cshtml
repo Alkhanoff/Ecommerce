@@ -9,7 +9,7 @@
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2">
-                <h3 class="content-header-title">Brend Yarat</h3>
+                <h3 class="content-header-title">Brendlər</h3>
             </div>
             <div class="content-header-right col-md-8 col-12">
                 <div class="breadcrumbs-top float-md-right">
@@ -38,7 +38,7 @@
 
             <div class="card" style="width: 50%;">
                 <div class="card-header">
-                    <h4 class="card-title" id="basic-layout-form">Yeni Brend</h4>
+                    <h4 class="card-title" id="basic-layout-form">Redaktə et</h4>
 
                 </div>
                 <div class="card-content collapse show">
@@ -56,6 +56,7 @@
                                         <div class="form-group">
                                             <label for="companyinput1">Şəkil</label>
                                             <input type="file" id="companyinput1" class="form-control" name="image">
+                                            <input type="hidden" name="oldimg" value="@Model.image.Split('/').Last().Split('.').First()" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -69,7 +70,7 @@
                                     <i class="ft-x"></i> Ləğv et
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="la la-check-square-o"></i> Əlavə et
+                                    <i class="la la-check-square-o"></i> Dəyiş
                                 </button>
                             </div>
 

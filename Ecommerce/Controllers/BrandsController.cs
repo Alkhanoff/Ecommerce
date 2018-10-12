@@ -19,24 +19,10 @@ namespace Ecommerce.Controllers
         // GET: Brands
         public ActionResult Index()
         {
-            return View(db.Brands.ToList());
+            return View(db.Brands.ToList().OrderByDescending(k=>k.id));
         }
 
-        // GET: Brands/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Brand brand = db.Brands.Find(id);
-            if (brand == null)
-            {
-                return HttpNotFound();
-            }
-            return View(brand);
-        }
-
+       
         // GET: Brands/Create
         public ActionResult Create()
         {
@@ -91,14 +77,34 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
      
-        public ActionResult Edit( HttpPostedFileBase image , Brand brand)
+        public ActionResult Edit( HttpPostedFileBase image , Brand brand , string oldimg)
         {
 
-           
+
             db.Entry(brand).State = EntityState.Modified;
             db.Entry(brand).Property(t => t.status).IsModified = false;
             if (image == null)
-                    db.Entry(brand).Property(m => m.image).IsModified = false;
+            {
+                db.Entry(brand).Property(m => m.image).IsModified = false;
+            }
+            else
+            {
+                var myAccount = new Account { ApiKey = "826331127339442", ApiSecret = "8SQi6Vti80ZwES3LeeBDFnSqBWQ", Cloud = "dycqowxvx" };
+                Cloudinary _cloudinary = new Cloudinary(myAccount);
+
+                //delete
+                _cloudinary.DeleteResources(oldimg);  
+
+                //upload
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(image.FileName, image.InputStream)
+                };
+                var uploadResult = _cloudinary.Upload(uploadParams);
+                brand.image = uploadResult.SecureUri.AbsoluteUri;
+
+            }
+                  
                    
             db.SaveChanges();
                 return RedirectToAction("Index");
