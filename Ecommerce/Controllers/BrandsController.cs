@@ -43,7 +43,7 @@ namespace Ecommerce.Controllers
             {
                 File = new FileDescription(image.FileName , image.InputStream)
             };
-        var uploadResult = _cloudinary.Upload(uploadParams);
+            var uploadResult = _cloudinary.Upload(uploadParams);
             brand.image = uploadResult.SecureUri.AbsoluteUri;
             brand.status = true;
             if (ModelState.IsValid)

@@ -44,19 +44,20 @@
                 <div class="card-content collapse show">
                     <div class="card-body">
 
-                        <form method="post" enctype="multipart/form-data" action="@Url.Action("createnew", "products")">
+                        <form method="post" enctype="multipart/form-data" action="@Url.Action("update", "products")">
                             <div class="form-body">
 
                                 <div class="form-group">
                                     <label for="companyName">Ad</label>
                                     <input type="text" id="companyName" value="@Model.Product.name" class="form-control" name="name">
+                                    <input type="hidden" name="id" value="@Model.Product.id" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="companyName">Kateqoriya</label>
                                             <select name="subcatId" class="form-control">
-                                                <option selected="true" disabled="disabled">Seçin</option>
+                                                <option selected="true" value="@Model.Product.subcatId">@Model.Product.SubCategory.Category.name | @Model.Product.SubCategory.name</option>
                                                 @foreach (var item in ViewBag.Cats)
                                                 {
                                                     <option value="@item.id"> @item.Category.name | @item.name </option>
@@ -122,6 +123,10 @@
                                         <div class="form-group">
                                             <label>Ölçülər</label>
                                             <select class="js-example-basic-multiple form-control" name="sizeId[]" multiple="multiple">
+                                                @foreach (var selected in Model.ProductSizes)
+                                                {
+                                                    <option selected value="@selected.Size.id">@selected.Size.name </option>
+                                                }
                                                 @foreach (var item in ViewBag.Sizes)
                                                 {
                                                     <option value="@item.id"> @item.name </option>
@@ -133,9 +138,13 @@
                                         <div class="form-group">
                                             <label>Rənglər</label>
                                             <select class="js-example-basic-multiple form-control" name="colorId[]" multiple="multiple">
+                                                @foreach (var selected in Model.ProductColors)
+                                                {
+                                                    <option selected value="@selected.Color.id">@selected.Color.name </option>
+                                                }
                                                 @foreach (var item in ViewBag.Colors)
                                                 {
-                                                    <option value="@item.id" style="background-color: @item.hash!important">  @item.name </option>
+                                                    <option value="@item.id">@item.name </option>
                                                 }
                                             </select>
                                         </div>
@@ -159,16 +168,30 @@
                                     </div>
 
                                 </div>
+                                <hr />
+                                <div class="row">
+                                    @foreach (var img in Model.Images)
+                                    {
+                                        <div class="col-md-3" style="overflow: hidden;">
+                                            <img src="@img.url" style="max-width: 300px; max-height: 300px;"  />
+                                            <a style="margin-right:auto; margin-left: auto; color: white;" class="btn btn-danger mt-1" href="@Url.Action("deleteimage", "products",  new {url=Model.Product.id , id=img.id , publicId=img.url.Split('/').Last().Split('.').First() })">Sil</a>
+                                        </div>
+                                    }
+
+
+
+                                </div>
+                                <hr />
                                 <div class="form-group">
                                     <label for="des">Haqqında</label>
-                                    <textarea rows="4"  id="des" class="form-control" name="description">@Model.Product.description</textarea>
+                                    <textarea rows="4" id="des" class="form-control" name="description">@Model.Product.description</textarea>
                                 </div>
                                 <div class="form-actions">
                                     <a href="@Url.Action("index","products")" class="btn btn-danger mr-1">
                                         <i class="ft-x"></i> Ləğv et
                                     </a>
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="la la-check-square-o"></i> Əlavə et
+                                        <i class="la la-check-square-o"></i> Dəyiş
                                     </button>
                                 </div>
                             </div>

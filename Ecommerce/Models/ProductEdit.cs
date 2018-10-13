@@ -9,7 +9,8 @@ namespace Ecommerce.Models
     {
       public  Product Product { get; set; }
       public  List<Image> Images { get; set; }
-
+      public  List<ProductColor> ProductColors { get; set; }
+      public  List<ProductSize> ProductSizes { get; set; }
 
 
     }
