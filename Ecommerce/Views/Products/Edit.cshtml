@@ -1,0 +1,190 @@
+﻿@model Ecommerce.Models.ProductEdit
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-left col-md-4 col-12 mb-2">
+                <h3 class="content-header-title">Məhsul Redaktə</h3>
+            </div>
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-right">
+                    <div class="breadcrumb-wrapper mr-1">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index-2.html">Ana Səhifə</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Redaktə</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Məhsullar
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+
+
+
+
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-form">Məhsul Redaktə</h4>
+
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+
+                        <form method="post" enctype="multipart/form-data" action="@Url.Action("createnew", "products")">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label for="companyName">Ad</label>
+                                    <input type="text" id="companyName" value="@Model.Product.name" class="form-control" name="name">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyName">Kateqoriya</label>
+                                            <select name="subcatId" class="form-control">
+                                                <option selected="true" disabled="disabled">Seçin</option>
+                                                @foreach (var item in ViewBag.Cats)
+                                                {
+                                                    <option value="@item.id"> @item.Category.name | @item.name </option>
+                                                }
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyName">Brend</label>
+                                            <select name="brandId" class="form-control">
+                                                <option selected="true" value="@Model.Product.Brand.id">@Model.Product.Brand.name</option>
+                                                @foreach (var item in ViewBag.Brands)
+                                                {
+                                                    <option value="@item.id">  @item.name </option>
+                                                }
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyName">Cins</label>
+                                            <select name="genderId" class="form-control">
+                                                <option selected="true" value="@Model.Product.Gender.id">@Model.Product.Gender.name</option>
+                                                @foreach (var item in ViewBag.Genders)
+                                                {
+                                                    <option value="@item.id"> @item.name </option>
+                                                }
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="real_price">Maya Qiyməti</label>
+                                            <input type="text" id="real_price" value="@Model.Product.real_price" class="form-control" name="real_price">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="price">Satış Qiyməti</label>
+                                            <input type="text" id="price" value="@Model.Product.price" class="form-control" name="price">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="discount_price">Endirimli Qiyməti</label>
+                                            <input type="text" id="discount_price" value="@Model.Product.discount_price" class="form-control" name="discount_price">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Ölçülər</label>
+                                            <select class="js-example-basic-multiple form-control" name="sizeId[]" multiple="multiple">
+                                                @foreach (var item in ViewBag.Sizes)
+                                                {
+                                                    <option value="@item.id"> @item.name </option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Rənglər</label>
+                                            <select class="js-example-basic-multiple form-control" name="colorId[]" multiple="multiple">
+                                                @foreach (var item in ViewBag.Colors)
+                                                {
+                                                    <option value="@item.id" style="background-color: @item.hash!important">  @item.name </option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyinput1">Şəkil</label>
+                                            <input multiple type="file" id="companyinput1" class="form-control" name="image">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="link">Link</label>
+                                            <input type="text" value="@Model.Product.link" id="link" class="form-control" name="link">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="des">Haqqında</label>
+                                    <textarea rows="4"  id="des" class="form-control" name="description">@Model.Product.description</textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <a href="@Url.Action("index","products")" class="btn btn-danger mr-1">
+                                        <i class="ft-x"></i> Ləğv et
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="la la-check-square-o"></i> Əlavə et
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>

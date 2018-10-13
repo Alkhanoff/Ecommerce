@@ -1,15 +1,16 @@
-﻿@model IEnumerable<Ecommerce.Models.Color>
+﻿@model IEnumerable<Ecommerce.Models.Category>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="app-content content">
     <div class="content-wrapper">
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2">
-                <h3 class="content-header-title">Rənglər</h3>
+                <h3 class="content-header-title">Kateqoriyalar</h3>
             </div>
             <div class="content-header-right col-md-8 col-12">
                 <div class="breadcrumbs-top float-md-right">
@@ -22,7 +23,7 @@
                                 <a href="#">Redaktə</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Rənglər
+                                Kateqoriyalar
                             </li>
                         </ol>
                     </div>
@@ -37,11 +38,11 @@
                         <div class="card">
                             <div class="card-header">
 
-                                <h4 class="card-title">Bütün Rənglər</h4>
+                                <h4 class="card-title">Kateqoriyalar</h4>
 
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
-                                    <a class="btn btn-success" href="@Url.Action("create", "colors")">Yenisini Yarat</a>
+                                    <a class="btn btn-success" href="@Url.Action("create", "categories")">Yenisini Yarat</a>
                                 </div>
                             </div>
                             <div class="card-content collapse show">
@@ -50,10 +51,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Ad</th>
-                                                <th>Rəng</th>
                                                 <th>Status</th>
                                                 <th>Tənzimləmə</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -62,9 +61,6 @@
                                                 <tr>
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.name)
-                                                    </td>
-                                                    <td>
-                                                       <div class="colorpalette" style="width: 30px; height: 30px; border: 1px solid black; border-radius: 100%; background-color: @item.hash ;"></div>
                                                     </td>
                                                     <td>
                                                         @if (item.status == true)
@@ -77,17 +73,15 @@
                                                         }
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-primary" href="@Url.Action("edit","colors" , new { id= item.id })">Dəyiş</a>
+                                                        <a class="btn btn-primary" href="@Url.Action("edit","categories" , new { id= item.id })">Dəyiş</a>
 
                                                     </td>
-
                                                 </tr>
                                             }
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th>Ad</th>
-                                                <th>Rəng</th>
                                                 <th>Status</th>
                                                 <th>Tənzimləmə</th>
                                             </tr>
@@ -99,6 +93,3 @@
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
-</div>

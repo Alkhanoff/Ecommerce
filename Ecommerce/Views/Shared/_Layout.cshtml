@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="~/Public/app-assets/css/core/colors/palette-gradient.min.css">
     <link rel="stylesheet" type="text/css" href="~/Public/app-assets/css/pages/chat-application.css">
     <link rel="stylesheet" type="text/css" href="~/Public/app-assets/css/pages/dashboard-analytics.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="~/Public/assets/css/style.css">
@@ -217,22 +218,22 @@
                     <ul class="dropdown-menu">
                         <div class="arrow_box">
                             <li data-menu="">
-                                <a class="dropdown-item" href="project-summary.html" data-toggle="dropdown">Məhsullar</a>
+                                <a class="dropdown-item" href="@Url.Action("index", "products")" data-toggle="dropdown">Məhsullar</a>
                             </li>
                             <li data-menu="">
                                 <a class="dropdown-item" href="@Url.Action("index", "brands")" data-toggle="dropdown">Brendlər</a>
                             </li>
                             <li data-menu="">
-                                <a class="dropdown-item" href="chat-application.html" data-toggle="dropdown">Kateqoriyalar</a>
+                                <a class="dropdown-item" href="@Url.Action("index","categories")" data-toggle="dropdown">Kateqoriyalar</a>
                             </li>
                             <li data-menu="">
-                                <a class="dropdown-item" href="full-calender.html" data-toggle="dropdown">Alt Kateqoriyalar</a>
+                                <a class="dropdown-item" href="@Url.Action("index","subcategories")" data-toggle="dropdown">Alt Kateqoriyalar</a>
                             </li>
 
-                        
+
 
                             <li data-menu="">
-                                <a class="dropdown-item" href="user-profile.html" data-toggle="dropdown">Rənglər</a>
+                                <a class="dropdown-item" href="@Url.Action("index", "colors")" data-toggle="dropdown">Rənglər</a>
                             </li>
 
                         </div>
@@ -777,6 +778,11 @@
     <!-- END CHAMELEON  JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="~/Public/app-assets/js/scripts/pages/dashboard-analytics.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });</script>
     <!-- END PAGE LEVEL JS-->
 </body>
 </html>

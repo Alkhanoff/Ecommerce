@@ -1,15 +1,17 @@
-﻿@model IEnumerable<Ecommerce.Models.Color>
+﻿@model IEnumerable<Ecommerce.Models.SubCategory>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <div class="app-content content">
     <div class="content-wrapper">
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2">
-                <h3 class="content-header-title">Rənglər</h3>
+                <h3 class="content-header-title">Alt Kateqoriyalar</h3>
             </div>
             <div class="content-header-right col-md-8 col-12">
                 <div class="breadcrumbs-top float-md-right">
@@ -22,7 +24,7 @@
                                 <a href="#">Redaktə</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Rənglər
+                                Alt  Kateqoriyalar
                             </li>
                         </ol>
                     </div>
@@ -37,11 +39,11 @@
                         <div class="card">
                             <div class="card-header">
 
-                                <h4 class="card-title">Bütün Rənglər</h4>
+                                <h4 class="card-title">Bütün Alt Kateqoriyalar</h4>
 
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
-                                    <a class="btn btn-success" href="@Url.Action("create", "colors")">Yenisini Yarat</a>
+                                    <a class="btn btn-success" href="@Url.Action("create", "subcategories")">Yenisini Yarat</a>
                                 </div>
                             </div>
                             <div class="card-content collapse show">
@@ -49,45 +51,47 @@
                                     <table class="table table-striped table-bordered dynamic-height">
                                         <thead>
                                             <tr>
-                                                <th>Ad</th>
-                                                <th>Rəng</th>
+                                                <th>Alt Kateqoriya</th>
+
+                                                <th>Kateqoriya</th>
                                                 <th>Status</th>
                                                 <th>Tənzimləmə</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach (var item in Model)
                                             {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.name)
-                                                    </td>
-                                                    <td>
-                                                       <div class="colorpalette" style="width: 30px; height: 30px; border: 1px solid black; border-radius: 100%; background-color: @item.hash ;"></div>
-                                                    </td>
-                                                    <td>
-                                                        @if (item.status == true)
-                                                        {
-                                                            <div class="badge badge-info">Aktiv</div>
-                                                        }
-                                                        else
-                                                        {
-                                                            <div class="badge badge-danger">Passiv</div>
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-primary" href="@Url.Action("edit","colors" , new { id= item.id })">Dəyiş</a>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.name)
+                                                </td>
 
-                                                    </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Category.name)
 
-                                                </tr>
+                                                </td>
+                                                <td>
+                                                    @if (item.status == true)
+                                                    {
+                                                        <div class="badge badge-info">Aktiv</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="badge badge-danger">Passiv</div>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="@Url.Action("edit","subcategories" , new { id= item.id })">Dəyiş</a>
+
+                                                </td>
+                                            </tr>
                                             }
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Ad</th>
-                                                <th>Rəng</th>
+                                                <th>Alt Kateqoriya</th>
+
+                                                <th>Kateqoriya</th>
                                                 <th>Status</th>
                                                 <th>Tənzimləmə</th>
                                             </tr>
@@ -99,6 +103,3 @@
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
-</div>

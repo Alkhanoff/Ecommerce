@@ -10,74 +10,73 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Controllers
 {
-    public class ColorsController : Controller
+    public class CategoriesController : Controller
     {
         private ecommerceEntities db = new ecommerceEntities();
 
-        // GET: Colors
+        // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            return View(db.Categories.ToList());
         }
 
-      
-
-        // GET: Colors/Create
+        // GET: Categories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-      
+        // POST: Categories/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-    
-        public ActionResult Create([Bind(Include = "id,name,hash,status")] Color color)
+
+        public ActionResult Create(Category category)
         {
+            category.status = true;
             if (ModelState.IsValid)
             {
-                color.status = true;
-                db.Colors.Add(color);
+
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(color);
+            return View(category);
         }
 
-        // GET: Colors/Edit/5
+        // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            return View(category);
         }
 
-        // POST: Colors/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-     
-        public ActionResult Edit([Bind(Include = "id,name,hash,status")] Color color)
+
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
-             
-                db.Entry(color).State = EntityState.Modified;
-                db.Entry(color).Property(t => t.status).IsModified = false;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(color);
+            return View(category);
         }
 
-      
+
 
         protected override void Dispose(bool disposing)
         {

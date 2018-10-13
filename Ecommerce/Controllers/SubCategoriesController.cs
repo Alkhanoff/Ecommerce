@@ -10,74 +10,77 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Controllers
 {
-    public class ColorsController : Controller
+    public class SubCategoriesController : Controller
     {
         private ecommerceEntities db = new ecommerceEntities();
 
-        // GET: Colors
+        // GET: SubCategories
         public ActionResult Index()
         {
-            return View(db.Colors.ToList());
+            var subCategories = db.SubCategories.Include(s => s.Category);
+            return View(subCategories.ToList());
         }
 
-      
 
-        // GET: Colors/Create
+        // GET: SubCategories/Create
         public ActionResult Create()
         {
+            ViewBag.catId = new SelectList(db.Categories, "id", "name");
             return View();
         }
 
-      
+        // POST: SubCategories/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-    
-        public ActionResult Create([Bind(Include = "id,name,hash,status")] Color color)
+        public ActionResult Create(SubCategory subCategory)
         {
+            subCategory.status = true;
             if (ModelState.IsValid)
             {
-                color.status = true;
-                db.Colors.Add(color);
+                db.SubCategories.Add(subCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(color);
+            ViewBag.catId = new SelectList(db.Categories, "id", "name", subCategory.catId);
+            return View(subCategory);
         }
 
-        // GET: Colors/Edit/5
+        // GET: SubCategories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Color color = db.Colors.Find(id);
-            if (color == null)
+            SubCategory subCategory = db.SubCategories.Find(id);
+            if (subCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(color);
+            ViewBag.catId = new SelectList(db.Categories, "id", "name", subCategory.catId);
+            return View(subCategory);
         }
 
-        // POST: Colors/Edit/5
+        // POST: SubCategories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-     
-        public ActionResult Edit([Bind(Include = "id,name,hash,status")] Color color)
+        public ActionResult Edit([Bind(Include = "id,name,catId,status")] SubCategory subCategory)
         {
             if (ModelState.IsValid)
             {
-             
-                db.Entry(color).State = EntityState.Modified;
-                db.Entry(color).Property(t => t.status).IsModified = false;
+                db.Entry(subCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(color);
+            ViewBag.catId = new SelectList(db.Categories, "id", "name", subCategory.catId);
+            return View(subCategory);
         }
 
-      
+
+
 
         protected override void Dispose(bool disposing)
         {

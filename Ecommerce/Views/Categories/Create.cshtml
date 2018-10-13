@@ -1,15 +1,17 @@
-﻿@model Ecommerce.Models.Color
+﻿@model Ecommerce.Models.Category
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <div class="app-content content">
     <div class="content-wrapper">
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2">
-                <h3 class="content-header-title">Rənglər</h3>
+                <h3 class="content-header-title">Kateqoriyalar Yarat</h3>
             </div>
             <div class="content-header-right col-md-8 col-12">
                 <div class="breadcrumbs-top float-md-right">
@@ -22,7 +24,7 @@
                                 <a href="#">Redaktə</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Rənglər
+                                Kateqoriyalar
                             </li>
                         </ol>
                     </div>
@@ -34,64 +36,36 @@
 
 
 
-
-
-            <div class="card" style="width: 50%;">
+            <div class="card" style="width: 100%;">
                 <div class="card-header">
-                    <h4 class="card-title" id="basic-layout-form">Redaktə et</h4>
+                    <h4 class="card-title" id="basic-layout-form">Yeni Kateqoriya</h4>
 
                 </div>
                 <div class="card-content collapse show">
                     <div class="card-body">
-
-                        <form method="post" enctype="multipart/form-data" action="@Url.Action("edit", "colors")">
+                        <form method="post" action="@Url.Action("create", "categories")">
                             <div class="form-body">
-                                <input type="hidden" value="@Model.id" />
                                 <div class="form-group">
                                     <label for="companyName">Ad</label>
-                                    <input type="text" id="companyName" class="form-control" value="@Model.name" name="name">
+                                    <input type="text" id="companyName" class="form-control" name="name">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <label for="companyinput1">Rəng</label>
-                                            <input type="text" id="companyinput1" value="@Model.hash" class="form-control" name="hash">
 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="colorpalette mt-2" style=" width: 30px; height: 30px; border: 1px solid black; border-radius: 100%; background-color: @Model.hash ;"></div>
-
-                                    </div>
-                                </div>
-                              
                             </div>
 
-
-
-
                             <div class="form-actions">
-                                <a href="@Url.Action("index","colors")" class="btn btn-danger mr-1">
+                                <a href="@Url.Action("index","categories")" class="btn btn-danger mr-1">
                                     <i class="ft-x"></i> Ləğv et
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="la la-check-square-o"></i> Dəyiş
+                                    <i class="la la-check-square-o"></i> Əlavə et
                                 </button>
                             </div>
-
-
                         </form>
                     </div>
 
                 </div>
-
-
-
-                </div>
             </div>
         </div>
-
-
 
 
     </div>

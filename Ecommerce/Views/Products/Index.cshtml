@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ecommerce.Models.Brand>
+﻿@model IEnumerable<Ecommerce.Models.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2">
-                <h3 class="content-header-title">Brendlər</h3>
+                <h3 class="content-header-title">Məhsullar</h3>
             </div>
             <div class="content-header-right col-md-8 col-12">
                 <div class="breadcrumbs-top float-md-right">
@@ -22,7 +22,7 @@
                                 <a href="#">Redaktə</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Brendlər
+                                Məhsullar
                             </li>
                         </ol>
                     </div>
@@ -36,12 +36,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                           
-                             <h4 class="card-title">Bütün Brendlər</h4>
-                          
+
+                                <h4 class="card-title">Bütün Məhsullar</h4>
+
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
-                                    <a class="btn btn-success" href="@Url.Action("create", "brands")">Yenisini Yarat</a>
+                                    <a class="btn btn-success" href="@Url.Action("create", "products")">Yenisini Yarat</a>
                                 </div>
                             </div>
                             <div class="card-content collapse show">
@@ -49,8 +49,12 @@
                                     <table class="table table-striped table-bordered dynamic-height">
                                         <thead>
                                             <tr>
-                                                <th>Ad</th>
-                                                <th>Şəkil</th>
+                                                <th>Məhsul</th>
+                                                <th>Kateqoriya | Alt Kateqoriya</th>
+                                                <th>Brend</th>
+                                                <th>Cins</th>
+                                                <th>Qiymət </th>
+                                          
                                                 <th>Status</th>
                                                 <th>Tənzimləmə</th>
 
@@ -64,8 +68,29 @@
                                                     @Html.DisplayFor(modelItem => item.name)
                                                 </td>
                                                 <td>
-                                                    <img width="60" height="60" src="@item.image" />
+                                                    @Html.DisplayFor(modelItem => item.SubCategory.Category.name, item.SubCategory.name)
                                                 </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Brand.name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Gender.name)
+                                                </td>
+                                                @if(item.discount_price == null)
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.price)
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.discount_price)
+                                                    </td>
+
+                                                }
+
+                                               
                                                 <td>
                                                     @if (item.status == true)
                                                     {
@@ -77,17 +102,21 @@
                                                     }
                                                 </td>
                                                 <td>
-                                                   <a class="btn btn-primary" href="@Url.Action("edit","brands" , new { id= item.id })">Dəyiş</a>
-                                                  
+                                                    <a class="btn btn-primary" href="@Url.Action("edit","products" , new { id= item.id })">Dəyiş</a>
+
                                                 </td>
 
                                             </tr>
                                             }
-                                            </tbody>
+                                        </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Ad</th>
-                                                <th>Şəkil</th>
+                                                <th>Məhsul</th>
+                                                <th>Kateqoriya | Alt Kateqoriya</th>
+                                                <th>Brend</th>
+                                                <th>Cins</th>
+                                                <th>Qiymət </th>
+                                                
                                                 <th>Status</th>
                                                 <th>Tənzimləmə</th>
                                             </tr>
@@ -99,6 +128,6 @@
                     </div>
                 </div>
             </section>
-           </div>
-</div>
+        </div>
+    </div>
 </div>
